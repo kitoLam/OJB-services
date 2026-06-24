@@ -18,6 +18,14 @@ export enum ProblemStatus {
   PUBLIC = 'PUBLIC',
 }
 
+// Trạng thái upload testcase (worker cập nhật) để user poll/biết tiến độ
+export enum TestcaseStatus {
+  PENDING = 'PENDING',       // vừa tạo problem, chưa publish job
+  PROCESSING = 'PROCESSING', // worker đang upload lên MinIO
+  READY = 'READY',           // upload xong, đã ghi DB
+  FAILED = 'FAILED',         // upload lỗi -> message vào DLQ
+}
+
 export interface ProblemSample {
   input: string;
   output: string;
@@ -68,6 +76,14 @@ export class Problem extends BaseEntity{
 
   @Column({ name: 'submit_count', type: 'int', default: 0 })
   submitCount: number;
+
+  @Column({
+    name: 'testcase_status',
+    type: 'enum',
+    enum: TestcaseStatus,
+    default: TestcaseStatus.PENDING,
+  })
+  testcaseStatus: TestcaseStatus;
 
   @OneToMany(() => Testcase, (tc) => tc.problem)
   testcases: Testcase[];
