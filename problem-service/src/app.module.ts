@@ -10,6 +10,8 @@ import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { HeaderInfoGuard } from './common/guards/header-info.guard';
 import { ZodValidationPipe } from './common/pipes/validation';
 import { MinioModule } from './common/modules/minio/minio.module';
+import { QueueModule } from './modules/queue/queue.module';
+import { WorkerModule } from './modules/worker/worker.module';
 // nếu gõ ở terminal `npm run start:dev` -> lấy cái env ta cấu hình ở script (development)
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -36,7 +38,9 @@ const ENV = process.env.NODE_ENV;
     }),
     ProblemModule,
     TestcaseModule,
-    MinioModule.forRootAsync()
+    MinioModule.forRootAsync(),
+    QueueModule,   // producer (publish job) — @Global nên dùng được ở ProblemService
+    WorkerModule,  // consumer (worker) — chạy chung process qua connectMicroservice
   ],
   controllers: [AppController],
   providers: [

@@ -17,6 +17,13 @@ export interface  EnvConfig {
     readonly bucket: {
       readonly testCase: string
     }
+  },
+  readonly rabbitmq: {
+    readonly url: string
+  },
+  readonly upload: {
+    // thư mục tạm để controller ghi file trước khi worker upload lên MinIO
+    readonly tmpDir: string
   }
 }
 
@@ -37,5 +44,11 @@ export const envConfig = () : EnvConfig => ({
     bucket: {
       testCase: `${process.env.MINIO_BUCKET_TEST_CASES}`
     }
+  },
+  rabbitmq: {
+    url: process.env.RABBITMQ_URL || ''
+  },
+  upload: {
+    tmpDir: process.env.UPLOAD_TMP_DIR || `${process.cwd()}/tmp/testcases`
   }
 })
