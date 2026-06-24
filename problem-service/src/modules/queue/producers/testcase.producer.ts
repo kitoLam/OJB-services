@@ -22,5 +22,10 @@ export class TestcaseProducer {
     );
     // emit() trả về cold Observable -> phải subscribe (lastValueFrom) để thực sự gửi đi
     await lastValueFrom(this.client.emit(TESTCASE_UPLOAD_PATTERN, message));
+    //                                ↑ Observable chưa được subscribe → KHÔNG GỬI GÌ HẾT
+    // ↑ lastValueFrom subscribe vào Observable
+    //   đợi Observable complete
+    //   resolve Promise khi xong
+    // Chắc chắn message đã được đẩy vào queue
   }
 }

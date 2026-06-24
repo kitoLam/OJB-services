@@ -15,9 +15,9 @@ export const createProblemRequestSchema = z.object({
         explanation: z.string().nullable(),
       }),
     )
-    .min(0),
-    timeLimitMs: z.number(),
-    memoryLimitMb: z.number(),
+    .min(1),
+    timeLimitMs: z.number().positive(),
+    memoryLimitMb: z.number().positive(),
     difficulty: z.enum(Difficulty),
     judgeType: z.enum(JudgeType),
     status: z.enum(ProblemStatus),

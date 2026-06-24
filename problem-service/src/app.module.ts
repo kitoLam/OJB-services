@@ -8,7 +8,7 @@ import { ProblemModule } from './modules/problem/problem.module';
 import { TestcaseModule } from './modules/testcase/testcase.module';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { HeaderInfoGuard } from './common/guards/header-info.guard';
-import { ZodValidationPipe } from './common/pipes/validation';
+import { ZodValidationPipe } from './common/pipes/validation.pipe';
 import { MinioModule } from './common/modules/minio/minio.module';
 import { QueueModule } from './modules/queue/queue.module';
 import { WorkerModule } from './modules/worker/worker.module';

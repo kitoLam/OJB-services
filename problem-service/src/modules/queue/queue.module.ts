@@ -9,6 +9,7 @@ import { TestcaseProducer } from './producers/testcase.producer';
 @Global()
 @Module({
   imports: [
+    // Ở đây do là đóng vai client request đến server => mặc dù ở main đã đăng kí nhưng đó là dưới vai trò server, ở đây đăng kí dưới vai trò là 1 client
     ClientsModule.registerAsync([
       {
         name: TESTCASE_CLIENT,
