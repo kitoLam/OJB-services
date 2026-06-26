@@ -4,9 +4,10 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { TestcasePipe } from 'src/common/pipes/testcase.pipe';
 import { BypassUserIdHeader } from 'src/common/decorators/bypass-user-id-header.decorator';
 import { memoryStorage } from 'multer';
+import { TestcaseProducer } from '../queue/producers/testcase.producer';
 @Controller('testcase')
 export class TestcaseController {
-  constructor(private readonly testcaseService: TestcaseService) {}
+  constructor(private readonly testcaseService: TestcaseService, private readonly testcaseProducer: TestcaseProducer) {}
 
   @BypassUserIdHeader()
   @Post()
@@ -18,12 +19,10 @@ export class TestcaseController {
       files: 100
     }
   }))  // chuẩn bị data cho handler
-  testUploadFile(
+  async testUploadFile(
     @UploadedFiles(TestcasePipe) files: MulterFile[]
   ){
-    files.forEach(file => {
-      console.log(file)
-    });
+    await this.testcaseProducer.requestUpload(files);
     return null;
   }
 }

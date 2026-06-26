@@ -3,11 +3,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Minio from 'minio';
 import { EnvConfig } from 'src/config/env.config';
 import { MinIOService } from './services/minio.service';
-export const MINIO_CLIENT = "MINIO_CLIENT"; 
+import { MINIO_CLIENT } from './constants/minio.constant';
 @Global()
 @Module({})
 export class MinIOModule {
-  static forRootAsync (): DynamicModule {
+  static forRootAsync(): DynamicModule {
     return {
       module: MinIOModule,
       imports: [ConfigModule],
@@ -22,12 +22,12 @@ export class MinIOModule {
               useSSL: config.get('minio.useSSL', { infer: true }),
               accessKey: config.get('minio.accessKey', { infer: true }),
               secretKey: config.get('minio.secretKey', { infer: true }),
-            })
-          }
+            });
+          },
         },
-        MinIOService
+        MinIOService,
       ],
-      exports: [MinIOService]
-    }
+      exports: [MinIOService],
+    };
   }
 }
