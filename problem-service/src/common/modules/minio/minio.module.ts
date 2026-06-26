@@ -2,13 +2,14 @@ import { DynamicModule, Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Minio from 'minio';
 import { EnvConfig } from 'src/config/env.config';
-export const MINIO_CLIENT = "MINIO_CLIENT"; 
+import { MinIOService } from './services/minio.service';
+import { MINIO_CLIENT } from './constants/minio.constant';
 @Global()
 @Module({})
-export class MinioModule {
-  static forRootAsync (): DynamicModule {
+export class MinIOModule {
+  static forRootAsync(): DynamicModule {
     return {
-      module: MinioModule,
+      module: MinIOModule,
       imports: [ConfigModule],
       providers: [
         {
@@ -16,15 +17,17 @@ export class MinioModule {
           inject: [ConfigService],
           useFactory: (config: ConfigService<EnvConfig>) => {
             return new Minio.Client({
-              endPoint: config.get('minio.accessKey', { infer: true })!,
+              endPoint: config.get('minio.endPoint', { infer: true })!,
               port: config.get('minio.port', { infer: true }),
               useSSL: config.get('minio.useSSL', { infer: true }),
               accessKey: config.get('minio.accessKey', { infer: true }),
               secretKey: config.get('minio.secretKey', { infer: true }),
-            })
-          }
-        }
-      ]      
-    }
+            });
+          },
+        },
+        MinIOService,
+      ],
+      exports: [MinIOService],
+    };
   }
 }
