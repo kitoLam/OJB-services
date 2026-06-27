@@ -47,11 +47,11 @@ export class ProblemController {
   @Get(':id')
   @BypassUserIdHeader()
   findOne(@Param('id') id: string) {
-    return this.problemService.findOne(+id);
+    return this.problemService.findOne(id);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.problemService.remove(+id);
+    return this.problemService.remove(id);
   }
 }
