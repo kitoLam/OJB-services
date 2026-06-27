@@ -28,9 +28,6 @@ export class Testcase extends BaseEntity{
   @Column({ name: 'order_index', type: 'int' })
   orderIndex: number;
 
-  @Column({ name: 'is_sample', type: 'boolean', default: false })
-  isSample: boolean;
-
   @Column({ name: 'input_object_path', type: 'varchar', length: 512 })
   inputObjectPath: string;
 

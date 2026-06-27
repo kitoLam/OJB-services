@@ -24,8 +24,7 @@ export class TestcaseController {
   ){
     await this.testcaseProducer.requestUpload({
       problemId: `asdfjasdf-01`,
-      files,
-      isSample: false,
+      files
     });
     return null;
   }

@@ -3,21 +3,28 @@ import { TEST_CASE_BUCKET } from 'src/common/modules/minio/constants/minio.const
 import { MinIOService } from 'src/common/modules/minio/services/minio.service';
 import { TestcaseRepository } from '../repositories/testcase.repository';
 import type { FileUpload } from 'src/modules/queue/contracts/testcase-upload.message';
+import { ProblemRepository } from 'src/modules/problem/repositories/problem.repository';
+import { ProblemStatus, TestcaseStatus } from 'src/modules/problem/entities/problem.entity';
 
 @Injectable()
 export class TestcaseService {
   constructor(
     private readonly minioService: MinIOService,
     private readonly testcaseRepo: TestcaseRepository,
+    private readonly problemRepo: ProblemRepository
   ) {}
 
   async cleanRedundantTestcase(problemId: string) {}
 
   async uploadTestcases(
     problemId: string,
-    files: FileUpload[],
-    isSample: boolean,
+    files: FileUpload[]
   ) {
+    await this.problemRepo.update({
+      id: problemId
+    }, {
+      testcaseStatus: TestcaseStatus.PROCESSING
+    })
     const uploaded: {
       filePath: string;
       filename: string;
@@ -78,6 +85,13 @@ export class TestcaseService {
 
     if (failed.length > 0) {
       // TODO: clean all uploaded file
+      
+      // Cập nhật lại problemId đó sẽ có status là FAIL
+      await this.problemRepo.update({
+        id: problemId,
+      }, {
+        testcaseStatus: TestcaseStatus.FAILED
+      });
       throw new InternalServerErrorException(
         `Upload thất bại: ${failed.join(', ')}`,
       );
@@ -87,17 +101,20 @@ export class TestcaseService {
     for (const item of keySet) {
       const input = inputMap.get(item);
       const output = outputMap.get(item);
-      const createdTestcase = {
+      const testcase = {
         problemId: problemId,
         orderIndex: ++currentOrderIdx,
-        isSample,
         inputObjectPath: input?.objectPath,
         outputObjectPath: output?.objectPath,
         inputSizeBytes: input?.size,
         outputSizeBytes: output?.size,
       };
-      console.log(createdTestcase);
-      // await this.testcaseRepo.save(createdTestcase);
+      await this.testcaseRepo.save(testcase);
+      await this.problemRepo.update({
+        id: problemId,
+      }, {
+        testcaseStatus: TestcaseStatus.READY
+      });
     }
   }
 }

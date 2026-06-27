@@ -6,5 +6,6 @@ import { ProblemRepository } from './repositories/problem.repository';
 @Module({
   controllers: [ProblemController],
   providers: [ProblemService, ProblemRepository],
+  exports: [ProblemRepository]
 })
 export class ProblemModule {}

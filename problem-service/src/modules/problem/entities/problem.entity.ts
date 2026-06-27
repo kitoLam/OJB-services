@@ -7,11 +7,6 @@ export enum Difficulty {
   HARD = 'HARD',
 }
 
-export enum JudgeType {
-  ALGO = 'ALGO',
-  SQL = 'SQL',
-}
-
 export enum ProblemStatus {
   DRAFT = 'DRAFT',
   REVIEW = 'REVIEW',
@@ -20,10 +15,10 @@ export enum ProblemStatus {
 
 // Trạng thái upload testcase (worker cập nhật) để user poll/biết tiến độ
 export enum TestcaseStatus {
-  PENDING = 'PENDING',       // vừa tạo problem, chưa publish job
-  PROCESSING = 'PROCESSING', // worker đang upload lên MinIO
-  READY = 'READY',           // upload xong, đã ghi DB
-  FAILED = 'FAILED',         // upload lỗi -> message vào DLQ
+  PENDING = 'PENDING',
+  PROCESSING = 'PROCESSING',
+  READY = 'READY',
+  FAILED = 'FAILED',
 }
 
 export interface ProblemSample {
@@ -62,13 +57,10 @@ export class Problem extends BaseEntity{
   @Column({ name: 'memory_limit_mb', type: 'int' })
   memoryLimitMb: number;
 
-  @Column({ type: 'enum', enum: Difficulty })
+  @Column({ name: 'difficulty', type: 'enum', enum: Difficulty })
   difficulty: Difficulty;
 
-  @Column({ name: 'judge_type', type: 'enum', enum: JudgeType })
-  judgeType: JudgeType;
-
-  @Column({ type: 'enum', enum: ProblemStatus, default: ProblemStatus.DRAFT })
+  @Column({ name: 'status', type: 'enum', enum: ProblemStatus, default: ProblemStatus.DRAFT })
   status: ProblemStatus;
 
   @Column({ name: 'ac_count', type: 'int', default: 0 })
@@ -84,6 +76,12 @@ export class Problem extends BaseEntity{
     default: TestcaseStatus.PENDING,
   })
   testcaseStatus: TestcaseStatus;
+
+  @Column({
+    name: 'total_testcase',
+    type: "number"
+  })
+  totalTestcase: number;
 
   @OneToMany(() => Testcase, (tc) => tc.problem)
   testcases: Testcase[];

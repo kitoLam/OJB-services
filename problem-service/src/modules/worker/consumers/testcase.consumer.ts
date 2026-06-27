@@ -19,7 +19,7 @@ export class TestcaseConsumer {
     const channel = context.getChannelRef();
     const originalMsg = context.getMessage();
     try {
-      await this.testcaseService.uploadTestcases(msg.problemId, msg.files, msg.isSample);
+      await this.testcaseService.uploadTestcases(msg.problemId, msg.files);
       channel.ack(originalMsg);
     } catch (err) {
       console.log(err)
