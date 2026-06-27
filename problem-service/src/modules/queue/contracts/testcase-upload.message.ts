@@ -10,6 +10,5 @@ export type FileUpload = {
 
 export interface TestcaseUploadRequestedMessage {
   problemId: string;
-  files: FileUpload,
-  isSample: boolean
+  files: FileUpload
 }

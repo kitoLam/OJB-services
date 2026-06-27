@@ -1,17 +1,26 @@
 import { Injectable } from '@nestjs/common';
-import { type CreateProblemRequest } from '../schemas/requests/problem';
+import { type CreateProblemRequest } from '../schemas/requests/problem-request.schema';
 import { ProblemRepository } from '../repositories/problem.repository';
+import { TestcaseProducer } from 'src/modules/queue/producers/testcase.producer';
 
 @Injectable()
 export class ProblemService {
   
   constructor(
-    readonly problemRepository: ProblemRepository,
+    private readonly problemRepository: ProblemRepository,
+    private readonly testcaseProducer: TestcaseProducer
   ) {}
 
-  create(createProblemDto: CreateProblemRequest) {
-    
-    return 'This action adds a new problem';
+  async create(createProblemDto: CreateProblemRequest, testedFiles: MulterFile[]) {
+    const createdProblem = await this.problemRepository.save({
+      ...createProblemDto,
+      totalTestcase: testedFiles.length,
+    });
+    await this.testcaseProducer.requestUpload({
+      files: testedFiles,
+      problemId: createdProblem.id
+    });
+    return createdProblem;
   }
 
   findAll() {
