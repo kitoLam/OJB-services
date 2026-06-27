@@ -20,9 +20,13 @@ export class TestcaseController {
     }
   }))  // chuẩn bị data cho handler
   async testUploadFile(
-    @UploadedFiles(TestcasePipe) files: MulterFile[]
+    @UploadedFiles(TestcasePipe) files: Express.Multer.File[]
   ){
-    await this.testcaseProducer.requestUpload(files);
+    await this.testcaseProducer.requestUpload({
+      problemId: `asdfjasdf-01`,
+      files,
+      isSample: false,
+    });
     return null;
   }
 }

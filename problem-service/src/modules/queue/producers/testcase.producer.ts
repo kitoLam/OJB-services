@@ -16,7 +16,7 @@ export class TestcaseProducer {
    * Dùng emit() = EVENT (fire-and-forget) -> KHÔNG chờ worker xử lý xong
    * nên request tạo problem trả về gần như tức thì.
    */
-  async requestUpload(msg: any): Promise<void> {
+  async requestUpload(msg: TestcaseUploadRequestedMessage): Promise<void> {
     console.log(`publish msg::${msg}`)
     // emit() trả về cold Observable -> phải subscribe (lastValueFrom) để thực sự gửi đi
     await lastValueFrom(this.client.emit(TESTCASE_UPLOAD_PATTERN, msg));
