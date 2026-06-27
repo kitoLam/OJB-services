@@ -61,15 +61,6 @@ export class TestcasePipe implements PipeTransform {
       );
     }
 
-    const numbers = [...inputNumbers].sort((a, b) => a - b);
-    for (let i = 0; i < numbers.length; i++) {
-      if (numbers[i] !== i + 1) {
-        throw new BadRequestException(
-          `Số thứ tự test phải liên tục từ 1, thiếu test số ${i + 1}`,
-        );
-      }
-    }
-
     return files;
   }
 }

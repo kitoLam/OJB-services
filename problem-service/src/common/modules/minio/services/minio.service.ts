@@ -17,12 +17,13 @@ export class MinIOService {
     objectPath: string,
     file: Express.Multer.File
   ): Promise<void> {
-    await this.minioClient.putObject(
+    const info = await this.minioClient.putObject(
       bucket, 
       objectPath,
       file.buffer,
       file.size
-    )
+    );
+    console.log(`info::${info}`);
   }
 
   async deleteFile(bucket: string, objectPath: string): Promise<void> {
