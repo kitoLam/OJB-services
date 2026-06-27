@@ -8,9 +8,11 @@ import {
   Delete,
   UseInterceptors,
   UploadedFile,
+  Query,
 } from '@nestjs/common';
 import { ProblemService } from './services/problem.service';
 import { type CreateProblemRequest } from './schemas/requests/problem-request.schema';
+import { type FindAllProblemsDto } from './schemas/query/problem-query.schema';
 import { BypassUserIdHeader } from 'src/common/decorators/bypass-user-id-header.decorator';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
@@ -38,8 +40,8 @@ export class ProblemController {
 
   @Get()
   @BypassUserIdHeader()
-  findAll() {
-    return this.problemService.findAll();
+  findAll(@Query() query: FindAllProblemsDto) {
+    return this.problemService.findAll(query);
   }
 
   @Get(':id')
