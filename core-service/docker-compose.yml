@@ -1,0 +1,90 @@
+# ============================================================
+#  problem-service — Self-contained Docker Compose
+#
+#  Includes:
+#    - postgres: database riêng của service này
+#    - problem-service: NestJS app (build từ Dockerfile)
+#
+#  Prerequisites:
+#    Infra phải được chạy trước:
+#    → cd ../infra && docker compose up -d
+#
+#  Usage:
+#    docker compose up -d
+#    docker compose up -d postgres   # chỉ chạy DB (dev mode)
+# ============================================================
+
+name: problem-service
+
+services:
+
+  # ----------------------------------------------------------
+  # PostgreSQL — Database riêng của problem-service
+  # ----------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: problem_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5433:5432"   # Map ra port 5433 để tránh conflict với postgres khác trên host
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - problem_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ----------------------------------------------------------
+  # problem-service — NestJS Application
+  # Uncomment khi muốn containerize app (production / CI)
+  # ----------------------------------------------------------
+  # problem-service:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: production
+  #   container_name: problem_service_app
+  #   restart: unless-stopped
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - "${PORT:-3001}:${PORT:-3001}"
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   networks:
+  #     - problem_network
+  #     - infra_network
+  #   volumes:
+  #     - ./logs:/app/logs
+
+# ============================================================
+# Volumes
+# ============================================================
+volumes:
+  postgres_data:
+    driver: local
+
+# ============================================================
+# Networks
+# ============================================================
+networks:
+
+  # Internal network — chỉ problem-service và postgres biết nhau
+  problem_network:
+    name: problem_network
+    driver: bridge
+
+  # External network — join vào infra để dùng Redis/RabbitMQ/MinIO
+  # Phải chạy infra trước: cd ../infra && docker compose up -d
+  infra_network:
+    name: infra_network
+    external: true
