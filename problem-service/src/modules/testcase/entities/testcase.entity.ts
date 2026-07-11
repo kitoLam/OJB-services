@@ -28,17 +28,11 @@ export class Testcase extends BaseEntity{
   @Column({ name: 'order_index', type: 'int' })
   orderIndex: number;
 
-  @Column({ name: 'is_sample', type: 'boolean', default: false })
-  isSample: boolean;
+  @Column({ name: 'input_object_path', type: 'varchar', length: 512 })
+  inputObjectPath: string;
 
-  @Column({ type: 'int', default: 1 })
-  version: number;
-
-  @Column({ name: 'input_object_key', type: 'varchar', length: 512 })
-  inputObjectKey: string;
-
-  @Column({ name: 'output_object_key', type: 'varchar', length: 512 })
-  outputObjectKey: string;
+  @Column({ name: 'output_object_path', type: 'varchar', length: 512 })
+  outputObjectPath: string;
 
   @Column({ name: 'input_size_bytes', type: 'int' })
   inputSizeBytes: number;
@@ -46,6 +40,9 @@ export class Testcase extends BaseEntity{
   @Column({ name: 'output_size_bytes', type: 'int' })
   outputSizeBytes: number;
 
-  @Column({ type: 'varchar', length: 64 }) // SHA-256 hex = 64 ký tự
+  // Dùng để đánh dấu sự thay đổi của testcase, và nhờ vậy mà bắt được việc cần rejudge các submission
+  @Column({ type: 'int', default: 1 })
+  version: number;
+  @Column({ type: 'varchar', length: 64, nullable: true }) // SHA-256 hex = 64 ký tự
   checksum: string;
 }
