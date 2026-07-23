@@ -1,31 +1,7 @@
 import { BaseEntity } from "src/common/entities/base.entity";
 import { Testcase } from "src/modules/testcase/entities/testcase.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-export enum Difficulty {
-  EASY = 'EASY',
-  MEDIUM = 'MEDIUM',
-  HARD = 'HARD',
-}
-
-export enum ProblemStatus {
-  DRAFT = 'DRAFT',
-  REVIEW = 'REVIEW',
-  PUBLIC = 'PUBLIC',
-}
-
-// Trạng thái upload testcase (worker cập nhật) để user poll/biết tiến độ
-export enum TestcaseStatus {
-  PENDING = 'PENDING',
-  PROCESSING = 'PROCESSING',
-  READY = 'READY',
-  FAILED = 'FAILED',
-}
-
-export interface ProblemSample {
-  input: string;
-  output: string;
-  explanation?: string;
-}
+import { Difficulty, ProblemSample, ProblemStatus, TestcasePollStatus } from "../enums/problem.enum";
 
 @Entity('problem')
 export class Problem extends BaseEntity{
@@ -72,10 +48,10 @@ export class Problem extends BaseEntity{
   @Column({
     name: 'testcase_status',
     type: 'enum',
-    enum: TestcaseStatus,
-    default: TestcaseStatus.PENDING,
+    enum: TestcasePollStatus,
+    default: TestcasePollStatus.PENDING,
   })
-  testcaseStatus: TestcaseStatus;
+  testcaseStatus: TestcasePollStatus;
 
   @Column({
     name: 'total_testcase',

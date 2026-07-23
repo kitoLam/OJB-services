@@ -1157,7 +1157,7 @@ Time --> N8
 ## 5.2 Activity Diagrams
 
 ### AD-AHI-01 — Log into the System
-
+![AD-BAR-01](https://www.plantuml.com/plantuml/png/RLFFQzH05BxdhtWKX2ujUEebGMs9Gh6q2br_W7YOJQREiCbCc4o4ojwAU2X2FNZm8BeKgJqiA1M41F6GfV_7_2U-ULbNZJtiPfBtllTzxtjlDalBZAtoB9WyABcP1FGUXBkk-G3MCFKCvc_cH_XGmjMp8Wha0Qp6mZMl5HJYyilb56CMty-JMmCyS0MhJ-xaJ6RNTn5WOOouy-hf8008zwW6S1-6DSZ_IeW2dfKSiVUsAYieVK97k6_qSvbwRLXXMxhcI17XyLNw877D6ODYWOayvd4xJI2NIa3AyC-sCoKeC3IkFWM69Dh85ynAhI3HAVV1oVvXQNbEfFCJrxoL58BCrPyEmUenLyYCAXPbKRzAvK6mn14j2Vtg7-qtxvDKLzav_1F5zDC2IPfNIpTtA3huh_kLVIONLWhjwk_9FtwkT1qIryWrxxpO-cVUSwjaqkTv4RxQpHkmuJiyKqlskBtmr5WBTLom7du32j7MDgACqke23zqSOzmDvf6TBG3TVf4eb3_pD5CYJxbbYUZ6tz7rdTpnRUT-tFX366rSEvKmOgfpS7x2kZwFyLjFVD-thFq1gVPvi4QVtaiGlgeNGpsGbANldPemni4NSFVH4CRjvnoCpd1FmZq45h1TASiDnCoai6gO6g_3LcNOEbo30WbULeFez_qA7xOVDTncfHXfJ8y2Ojn44ho4lm00)
 ```plantuml
 @startuml
 |User|
@@ -1206,7 +1206,7 @@ stop
 *Diễn giải:* Activity diagram mô tả luồng đăng nhập với hai nhánh (email/mật khẩu và OAuth), vòng lặp thử lại khi sai thông tin kèm cơ chế khóa tạm sau 5 lần sai, và chốt chặn kiểm tra trạng thái ban trước khi cấp JWT.
 
 ### AD-AHI-02 — View / Update Hunter Profile
-
+![AD-AHI-02](https://www.plantuml.com/plantuml/png/dL9DQnH14BtFhtZaD4iMSfyv6DaS0lb0YFw0tadlT9EPxg4_4XVs5aJ4Kn1F8cO98Yh1Y9ws3nucv7_qFx6xDras7hrCJtLrlNhrNcrhGvInRPFDNcYgPbcAi-B0kqymYeWQkrOOgl1CoGblQ9dDZgRQq7QM5S-LdUBKBpuB6DR_3cyD5uWuo8bLP8W0S3B4AIVD46TSwAr6QatreCmcKfram3h6qr2ooxMHQefZxtu6l37txjpYziAxTyiQa9fmaIhxQy5WPCShj7un5snhwXT_B8nttz5uzxPYqDvTGzjnoxNcKloBSHZgEbJCkw-YJkSRcF2zWhuzZrDH2HQnwpAZuXY9TR4RMSLiw85kgGisqONubKrZX6XCZckAkf5dvOEsV89ylxzCVRx0z9SS9qpwnPLuCeYz1FAzfECWSXibDYzfMuP8XpapscYAVDJ_6aGoV9803wnt5sB9NIm79ly9LnooPCJ6Q1qCB8WFVJVVMFV-aGPLFwzWrDsDTnz5lImBfiNuga9k-czY279A3573uAaSh2HHjAF4H7wFUgxjKwIx8hP_TsD3ZapJIhpd6p6x8WKKUv5M6pSNqSOkxi7hyhuDpbXqAj_nxWSQ7Z9sxLKGZUkLP13It8jJZFpYkeDWuJ0O7Utibu_dNoc4rhiF79iFzCVzNCR_Iy5GnPioIyfl1xrjs_m5)
 ```plantuml
 @startuml
 |User|
@@ -1252,7 +1252,7 @@ stop
 *Diễn giải:* Diagram mô tả việc nạp song song ba nguồn dữ liệu để dựng profile, nhánh quyết định phân biệt người xem là chủ tài khoản hay khách, và vòng lặp validation khi chỉnh sửa.
 
 ### AD-PRS-01 — Solve & Submit a Problem (Practice)
-
+![AD-PRS-01](https://www.plantuml.com/plantuml/png/RPHFQoH56CRlyoaUvZI3sGH1FKoxkkiODZ4aB2JgGJnKLrUcQzDTrTjLFMPaBiiU5X7173o813E474G2YdgPFdZeuFVeR-9RDPsACtWPXkhtp_l-dgVgYR6ij5MUzUPxbRAYdFVyIMyqJjlwEuMYr74cSjYs_XK9KobCi-1fr1lTVKy177SNRVqARVqpB8lHTwUl43TNiX-v8jMihLyh6AOcgu2nJWHzcX_FZ1Nvl3SwI9i_9GfgTyCHjyjh1PKsYm8s5Hg3Re3zP0iP5QdOH0oZXsbBKGXcUu0ynU0eRPUt1JYrS9L-fvxSJGlLNEaFXwwYmk2BPyrVEmMZzbyEAH4OqS4goPQQSWwrObnZDv5Mbn65YCm8olkqo3HBS2gpaDbHSaVOvaMni_s2JTdEjdcPHJuYxEd33oJHoAaDyzo-9Pn9krnGpxTmrjpIf3RzvxUs_edZ_STuxvs3Zw9LuX555L1j_QD4Kb7yb3Q221C2WGWWL29FUskzHqyhgmsRYZN2WqJ4kb9Su6r3KDUAZ1pC6uN-SHNdqlQZjO9hgvJC2cIIeZ2WiT_TAT9cQOTkHXZvjOWwUVRQ-hf0rjPlWXPEV3NfO9uuZt4YUY69H-eQA8eZJlxtKc8YcV8HbnjB1p4kNLSVVekCeCbLO28iuscGSjpyCGoWN6UArF2R6YCr3VPyz-ZZ_QDdmotQa8Z1X6_xYIlfxB_yPOONEbvfaJPNQk9LlPRWZbtkaNrI9HE1ptLvrd4TwxnmTZ6wAdbWStzgNPqKt67Pe1JCkb2OYZAHtE8nnhlHsbe1nN8nyxVMNJnXB6Vctj-6gIJMvr6W_WCTfbuSnfyBcahPBUJi_4Jcmlyv5BakPrt2SJL3oS88rkT7_-kxWCcMAvjRyfr4ALZso59nJDrhmJD97JtLlV-87ZfC_1rB_CMGmVHTz1k5c3d4VTeUP-toRukNbPECfn9M-eD77-1Sv3WX3XWJ2DFVSBkJuB0YvoaV-90QD7XWUnWUkurwQvjlBjD9uMKO69ONcHZXjCgoBHIbd38hHjxPtzolFToqk1Svc27mNhs0-2frzXby5epnT4opInCIeBJjrWXZaZpDOlK8tLJ-rQR4OvrDHKB6ltjD0pC-rfLJ9mnYh2vwJwXvbMV_0W00)
 ```plantuml
 @startuml
 |Hunter|
@@ -1320,7 +1320,7 @@ stop
 *Diễn giải:* Đây là vòng lặp luyện tập trung tâm. Diagram thể hiện swimlane ba bên (Hunter / System / Judge Worker), hai nhánh nhập code, chốt chặn rate limit, nhánh CE tách khỏi luồng chấm testcase, và vòng lặp lặp lại cho tới khi đạt AC.
 
 ### AD-PRS-02 — View Other User's Source Code
-
+![AD-PRS-02](https//www.plantuml.com/plantuml/png/bP51ozCm6CVl-HGFxwc5WVVsuAkx38PUzWdQD6k3JJgIT3ZePNWKGOyon8qXUXaEzDGSC_Ozyarysiwv8HwyZ2pFF__VBysZDeaojIX9CwcbOQeX_Gw9NdZx6LBVxcKEfRTlQG7QsmFeEXLSQrx9c4HklS2C_TWbtb48banbd1fu0Z9tFoN-UliT_orKbPPCuAhMJ8KnQMOhRPXeI3JXthwHO0faG9P8nBWTmbxXnkQsFVwZ6BqiVFj5mj9jAn2OC7TQ_oWNp2HPOfAhvWWC5so40r6frUZM6HNv78BPxzQkeqOGXQMtQw25Ew3fuFCqn26J48pTZv00t5DrLIlAW5OPYt6eJRKWhDGCWcc1k3maJ6PyJg9fTqg0KScb5quVt1wUZQzVJxhj2j7dOpBOdTxty__W3-1nLz4dVVjDNXBnNoSVdljs9u7wzgliD5AtvOE3KUUZjnkAZyJXDHFT0ttYa7FVxlb3VBbHVzL7NDUY_0K0)
 ```plantuml
 @startuml
 |Hunter|
@@ -1352,7 +1352,7 @@ stop
 *Diễn giải:* Diagram thể hiện cơ chế ẩn solution: metadata luôn công khai, nhưng source chỉ mở khi người xem là chủ submission hoặc đã AC bài đó.
 
 ### AD-BAR-01 — Matchmaking
-
+![AD-BAR-01](https://www.plantuml.com/plantuml/png/VLHDQnD16BxlhtZ9AS58rzOFoABsmuyMIy4QUjziDfcXkxCXErifv28UF8ZOuab4R0WYjHMg5QIx1y4f_H_xJtnc9ztG4BsK9fdt-NZUPsOnbcvV9c5W3LOJ8Vt-m2g-iHehBC_U299HZtjqZSxty-mzRJDrwbYD3PQddmLLckeu9DdFqs-YubY3PxknzCE1nJjKDMWOSqMNF7KwFaPBAysrhOVtQoIPBwYweavh5b6ZcMT7v85odzSnnFFiHKBiuYJFFc1-1nyl0GnYEyy-EHYCeS_oWzYdwXEcVefkpV95ctUinldUnObBOnaxwY0YfWumgOsCE5MNahvRD_RgX8aEzv90xjPWRnNqBs4TSbvJY2cC7WjMwFk8B5g8GkEalqF7Uivu0FRpFJMYBbE7FVoYTOyyVGH-2fmlSCnZ-6LGLJX-cgX3ULMJH9oNYZrr9hfb-XDzZfvTnseydM14egl9XZYh3H63z5UYW6NwAEzeJYtx7jssu-dSWRM1YFaqZDJh-FDzthOfK5y5_hrfsnhFH5swC5bVfLcW7bEfd47r60oN_hPn-YsVsid6sgFDw_QTccFEBwjXH1MpLnFEp6Wh-hYfmlyLZgc5QUygHdV_fNA6lB6eBTt51sxCMf7RRy-WDdedtFWxxiXcdhtZjV9gYMwU7YMGmtN4lNxK2lpGHD-Bee2gqzitxLoFydJ8KP2XHorrm7L3AKGb9Sb-1BdCvP2CEiPHiECxLh4SzMD2WVsS4OEdNcb_8hfHv4AXAprM1m5MuENfIAEMk_20PhWdK9MfwuX0oxlOXEA8bbqfTGonT6KIqztnMm1FkAnv-WlwTOKuTRahJBidhmvLRzoQcxVd5cnJBqoLBrPZ2zTRJqNKDlqtL8vLw5c42hnmVm40)
 ```plantuml
 @startuml
 |Hunter|
@@ -1405,7 +1405,7 @@ stop
 *Diễn giải:* Diagram thể hiện vòng lặp ghép trận với hai mốc thời gian (nới ngưỡng ở 60s, hủy ở 3 phút), nhánh hủy chủ động của Hunter, và bước chọn problem loại trừ các bài đã solve.
 
 ### AD-BAR-02 — Play a Live Battle
-
+![AD-BAR-02](https://www.plantuml.com/plantuml/png/RLHBQ_D65DtxLrm--43cYzFqiOhxYEC-aeQ6afWq4BeOZIRIOEcECnebDNXJIkcYYpQKBh8eJGYbJI0qz46flUXYGlw7_aclHh9aWrVopDp7EUSUtwtKC6so96vDTZ8qGaDlqd9thSqZUwqWb4n18FFPDmZRp9XOW9Vaioi3HZCCsztMv72S6f5CMfi70WEg40bMVBodotps0uOGqMSDtW1spgWml88mLXUKE8yVCHGn5D5VWc-l9KLyef1n1Hy4qgWYmrV6gAICfCGzAlcpT2bNr62nKN6O_fS0Xi-F-UoMTnU9NKIom3_G-VG1WTi_q57x6a6pzzeWK_3wTDbk0SXJy7RiDKRpBlHk8e7WdHn9wc20gq1yNeG2R7va_tPdC5eH4E5mT-bDnAaeIftisJjLCNtDbVnHWc5-nQogKqlfYlOBzUqjLccHogV_S30g38d4GEX48elXxSwxT4WDz5agY834pYXcN930hcJDVX7DFb4QER5NTXxaqni5XvcVo3IL2Y7CfxyZ-6x-km5uVZxx3iuoHheP0R5CfA5-fHIHX5Y53S0Nheun4iFrzVKN5QoFio0Ky9dIGw5hlicecCyhu14164FACF3L5rNXOcgtS2vq8BcX8CO_5PeBDDqL30X57HhRUwpXLCNwv80HO4GVu-RGIDZmg0pVwB0g-MMl3vmfT_p5L15Ft-VJkx5xIrdbq4i9XXpwAtZ3oFv5bqFxM-9SKqbNJAOc1U_0wniRBslNzUsVvQIe-fxpdudib8CflOmX6tUhTryBDgJVvRmfDNf-P6Mom42UhlO5kMAxc2hFo1jyRknZUyDBfWX-yxnAykDyza2WChO6eRr1k928GfDRUAIM1A3a6cK3QJAGYPZC_tcEOKZ_pP-M55ZHTeKOtlxkXmUTZRVQovsMrMWQDqhGLRKY5ggs5pRSm3vWDD-3Xrnf0H6JuDjxyiQoBtgPPk3rtkzizmZBcyM-so4-Nw4JuLjGPC-OZM7eEfrbXRcDfaB0xRyObkkrkxoMrQYrHHXfNVyF)
 ```plantuml
 @startuml
 |Hunter A|

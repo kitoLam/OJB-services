@@ -23,6 +23,9 @@
     "noFallthroughCasesInSwitch": false,
     "strictPropertyInitialization": false,
     "typeRoots": ["./node_modules/@types"],
+    "paths": {
+      "minio": ["./node_modules/minio/dist/esm/index.d.ts"]
+    }
   },
   "include": ["src/**/*"] 
 }

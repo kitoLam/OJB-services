@@ -13,15 +13,14 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
 
-  // Gắn microservice RMQ vào CÙNG process (hybrid app):
-  // các @EventPattern trong WorkerModule sẽ tiêu thụ message từ queue này.
+
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,
     options: {
       urls: [config.get('rabbitmq.url', { infer: true })!],
       queue: TESTCASE_QUEUE,
       queueOptions: { durable: true },
-      noAck: false,       // tự ack/nack trong consumer để hỗ trợ retry/DLQ
+      noAck: true,
       prefetchCount: 1,   // mỗi lần worker ôm 1 job, tránh quá tải
     },
   });
