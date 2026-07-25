@@ -24,6 +24,10 @@ export interface  EnvConfig {
   readonly upload: {
     // thư mục tạm để controller ghi file trước khi worker upload lên MinIO
     readonly tmpDir: string
+  },
+  jwt: {
+    refresh_secret: string,
+    access_secret: string
   }
 }
 
@@ -50,5 +54,9 @@ export const envConfig = () : EnvConfig => ({
   },
   upload: {
     tmpDir: process.env.UPLOAD_TMP_DIR || `${process.cwd()}/tmp/testcases`
+  },
+  jwt: {
+    access_secret: process.env.ACCESS_SECRET || 'ACCESS_SECRET',
+    refresh_secret: process.env.REFRESH_SECRET || 'REFRESH_SECRET', 
   }
 })

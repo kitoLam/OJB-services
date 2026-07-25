@@ -18,7 +18,7 @@ import { TestcaseProducer } from './producers/testcase.producer';
         useFactory: (config: ConfigService<EnvConfig>) => ({
           transport: Transport.RMQ,
           options: {
-            urls: [config.get('rabbitmq.url', { infer: true })!],
+            urls: [config.get('rabbitmq.url', { infer: true })],
             queue: TESTCASE_QUEUE,
             queueOptions: {
               durable: true, // queue sống sót khi RabbitMQ restart
